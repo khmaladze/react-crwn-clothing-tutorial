@@ -17,6 +17,10 @@ const addCartItem = (cartItems, productToAdd) => {
   return [...cartItems, { ...productToAdd, quantity: 1 }];
 };
 
+const clearCart = () => {
+  return [];
+};
+
 const removeCartItem = (cartItems, cartItemToRemove) => {
   // find the cart item to remove
   const existingCartItem = cartItems.find(
@@ -49,6 +53,11 @@ export const addItemToCart = (cartItems, productToAdd) => {
 
 export const removeItemFromCart = (cartItems, cartItemToRemove) => {
   const newCartItems = removeCartItem(cartItems, cartItemToRemove);
+  return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems);
+};
+
+export const clearItemsFromCart = () => {
+  const newCartItems = clearCart();
   return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems);
 };
 
